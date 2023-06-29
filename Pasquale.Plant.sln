@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "doc", "doc", "{2814B243-6C5B-4D1B-BA02-D84B5B539748}"
+	ProjectSection(SolutionItems) = preProject
+		doc\redme.md = doc\redme.md
+		doc\releases.md = doc\releases.md
+		doc\readmap.md = doc\readmap.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{54A24CA0-A732-4F80-BE6D-0392BF72FE85}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{44A98ED9-1362-43B9-BAE2-31333E77764B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pasquale.Plant.Api", "src\Pasquale.Plant.Api\Pasquale.Plant.Api.csproj", "{F298BEE8-73B6-42BF-AED0-234294DB5EC1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F298BEE8-73B6-42BF-AED0-234294DB5EC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F298BEE8-73B6-42BF-AED0-234294DB5EC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F298BEE8-73B6-42BF-AED0-234294DB5EC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F298BEE8-73B6-42BF-AED0-234294DB5EC1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F298BEE8-73B6-42BF-AED0-234294DB5EC1} = {54A24CA0-A732-4F80-BE6D-0392BF72FE85}
+	EndGlobalSection
+EndGlobal
