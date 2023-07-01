@@ -2,9 +2,9 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "doc", "doc", "{2814B243-6C5B-4D1B-BA02-D84B5B539748}"
 	ProjectSection(SolutionItems) = preProject
-		doc\releases.md = doc\releases.md
-		doc\readmap.md = doc\readmap.md
-		doc\readme.md = doc\readme.md
+		readme.md = readme.md
+		readmap.md = readmap.md
+		releases.md = releases.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{54A24CA0-A732-4F80-BE6D-0392BF72FE85}"
