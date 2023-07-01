@@ -1,11 +1,12 @@
 using Hangfire;
 using Hangfire.PostgreSql;
+using Haruki.Api.Commons.Constants;
 
 namespace Haruki.Api.Commons.Configurations.Services;
 
 public static class ConfigureHangfireService
 {
-    public static void AddHangfireService(this IServiceCollection services, IConfiguration configuration)
+    public static void AddHangfireService(this IServiceCollection services)
     {
         services.AddHangfire(hangfire =>
         {
@@ -13,7 +14,7 @@ public static class ConfigureHangfireService
             hangfire.UseSimpleAssemblyNameTypeSerializer();
             hangfire.UseRecommendedSerializerSettings();
             hangfire.UseColouredConsoleLogProvider();
-            hangfire.UsePostgreSqlStorage(configuration.GetConnectionString("HangfireConnection"), 
+            hangfire.UsePostgreSqlStorage(SettingConstant.HangfireConnectionString, 
                 new PostgreSqlStorageOptions
                 {
                     SchemaName = "hangfire",

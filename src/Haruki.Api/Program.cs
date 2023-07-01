@@ -1,36 +1,40 @@
 using Haruki.Api.Commons.Configurations.Applications;
 using Haruki.Api.Commons.Configurations.Builders;
 using Haruki.Api.Commons.Configurations.Services;
+using Haruki.Api.Commons.Constants;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
+builder.AddSettingBuilder();
 builder.AddSerilogBuilder();
-builder.Services.AddConfigurationService(builder.Configuration);
+
 builder.Services.AddHttpContextAccessor();
-builder.Services.AddIdentityService(builder.Configuration);
+builder.Services.AddIdentityService();
 builder.Services.AddDependencyService();
 builder.Services.AddAuthenticationService();
 builder.Services.AddControllerService();
-builder.Services.AddCorsService(builder.Configuration);
+builder.Services.AddCorsService();
 builder.Services.AddVersionService();
 builder.Services.AddSwaggerService();
 builder.Services.AddProblemDetails();
-builder.Services.AddContextService(builder.Configuration);
-builder.Services.AddHangfireService(builder.Configuration);
+builder.Services.AddContextService();
+builder.Services.AddHttpClientService();
+builder.Services.AddLazyCache();
+builder.Services.AddHangfireService();
 builder.Services.AddHealthCheckService();
 builder.Services.AddTaskService();
 
 var app = builder.Build();
 app.AddEnvironmentApplication();
-app.UseCors(builder.Configuration.GetSection("AppSettings:Cors").ToString()!);
+app.UseCors(SettingConstant.Cors);
 app.UseSerilogRequestLogging();
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
-app.AddHangfireApplication(builder.Configuration);
+app.AddHangfireApplication();
 app.MapControllers();
 app.AddHealthCheckApplication();
 app.Run();

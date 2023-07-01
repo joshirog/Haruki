@@ -1,11 +1,12 @@
 using Hangfire;
 using HangfireBasicAuthenticationFilter;
+using Haruki.Api.Commons.Constants;
 
 namespace Haruki.Api.Commons.Configurations.Applications;
 
 public static class ConfigureHangfireApplication
 {
-    public static void AddHangfireApplication(this WebApplication app, IConfiguration configuration)
+    public static void AddHangfireApplication(this WebApplication app)
     {
         app.UseHangfireDashboard("/hangfire", new DashboardOptions
         {
@@ -14,8 +15,8 @@ public static class ConfigureHangfireApplication
             {
                 new HangfireCustomBasicAuthenticationFilter
                 {
-                    User = configuration.GetSection("Hangfire:Credentials:UserName").Value,
-                    Pass = configuration.GetSection("Hangfire:Credentials:Password").Value
+                    User = SettingConstant.HangfireUserName,
+                    Pass = SettingConstant.HangfirePassword,
                 }
             }
         });

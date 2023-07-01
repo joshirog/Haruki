@@ -25,6 +25,7 @@ public class ExceptionFilter : ExceptionFilterAttribute
         _exceptionHandlers = new Dictionary<string, Action<ExceptionContext>>
         {
             { nameof(ValidationsException), HandleValidationException },
+            { nameof(ErrorInvalidException), HandleErrorInvalidException },
             { nameof(UnauthorizedAccessException), HandleUnauthorizedAccessException },
             { nameof(AutoMapperMappingException), HandleAutoMapperMappingException },
         };
@@ -72,6 +73,15 @@ public class ExceptionFilter : ExceptionFilterAttribute
         var exception = context.Exception as ValidationsException;
 
         CustomValidationMessage = (from error in exception?.Errors select error.ErrorMessage).ToList();
+
+        context.ExceptionHandled = true;
+    }
+    
+    private void HandleErrorInvalidException(ExceptionContext context)
+    {
+        var exception = context.Exception as ErrorInvalidException;
+
+        CustomValidationMessage = exception?.Errors;
 
         context.ExceptionHandled = true;
     }

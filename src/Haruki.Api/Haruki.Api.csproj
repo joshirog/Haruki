@@ -3,12 +3,14 @@
     <PropertyGroup>
         <TargetFramework>net7.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
-        <NoWarn>1591</NoWarn>
+        <NoWarn>1591;ASP0013</NoWarn>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="Hangfire.PostgreSql" Version="1.19.12" />
+        <PackageReference Include="LazyCache" Version="2.4.0" />
+        <PackageReference Include="LazyCache.AspNetCore" Version="2.4.0" />
         <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.8" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.8" />
         <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.8" />

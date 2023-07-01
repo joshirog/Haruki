@@ -1,9 +1,11 @@
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Haruki.Api.Commons.Bases;
 
 [ApiController]
+[Authorize]
 [Route( "api/v{version:apiVersion}/[controller]" )]
 public abstract class ApiControllerBase : ControllerBase
 {

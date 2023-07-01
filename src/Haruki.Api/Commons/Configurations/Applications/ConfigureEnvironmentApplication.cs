@@ -6,7 +6,7 @@ public static class ConfigureEnvironmentApplication
     {
         app.AddSwaggerApplication();
         
-        if (!app.Environment.IsDevelopment()) 
-            return;
+        //if (!app.Environment.IsDevelopment()) 
+            //return;
     }
 }

@@ -1,12 +1,14 @@
+using Haruki.Api.Commons.Constants;
+
 namespace Haruki.Api.Commons.Configurations.Services;
 
 public static class ConfigureCorsService
 {
-    public static void AddCorsService(this IServiceCollection services, IConfiguration configuration)
+    public static void AddCorsService(this IServiceCollection services)
     {
         services.AddCors(options =>
         {
-            options.AddPolicy(configuration.GetSection("AppSettings:Cors").ToString()!,
+            options.AddPolicy(SettingConstant.Cors,
                 builder =>
                 {
                     builder

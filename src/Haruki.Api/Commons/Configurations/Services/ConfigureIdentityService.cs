@@ -1,3 +1,4 @@
+using Haruki.Api.Commons.Constants;
 using Haruki.Api.Commons.Helpers;
 using Haruki.Api.Domains.Entities;
 using Haruki.Api.Persistences.Contexts;
@@ -8,7 +9,7 @@ namespace Haruki.Api.Commons.Configurations.Services;
 
 public static class ConfigureIdentityService
 {
-    public static void AddIdentityService(this IServiceCollection services, IConfiguration configuration)
+    public static void AddIdentityService(this IServiceCollection services)
     {
         services.AddIdentity<User, Role>(
                 options =>
@@ -23,11 +24,11 @@ public static class ConfigureIdentityService
                     options.Password.RequireNonAlphanumeric = true;
                     options.Password.RequireUppercase = true;
                     options.SignIn.RequireConfirmedEmail = true;
-                    options.Tokens.EmailConfirmationTokenProvider = configuration["AppSettings:Identity"]!;
+                    options.Tokens.EmailConfirmationTokenProvider = SettingConstant.Identity;
                 })
             .AddEntityFrameworkStores<DefaultContext>()
             .AddErrorDescriber<IdentityErrorHelper>()
-            .AddTokenProvider<IdentityEmailService<User>>(configuration["AppSettings:Identity"]!)
+            .AddTokenProvider<IdentityEmailService<User>>(SettingConstant.Identity)
             .AddDefaultTokenProviders();
 
         services.Configure<DataProtectionTokenProviderOptions>(options => options.TokenLifespan = TimeSpan.FromMinutes(5));

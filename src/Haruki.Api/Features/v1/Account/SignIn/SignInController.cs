@@ -3,17 +3,17 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace Haruki.Api.Features.v1.Account.SignUp;
+namespace Haruki.Api.Features.v1.Account.SignIn;
 
-public class SignUpController : ApiControllerBase
+public class SignInController : ApiControllerBase
 {
     [HttpPost]
     [AllowAnonymous]
     [ApiVersion("1.0")]
     [ApiExplorerSettings(GroupName = "Accounts")]
     [Produces("application/json")]
-    [SwaggerOperation(Summary = "Create new user", Description = "Create new user")]
-    public async Task<IActionResult> SignUp([FromBody] SignUpCommand command)
+    [SwaggerOperation(Summary = "Authentication user", Description = "Authentication user")]
+    public async Task<IActionResult> SignIn([FromBody] SignInCommand command)
     {
         return Ok(await Mediator.Send(command));
     }

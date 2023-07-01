@@ -25,6 +25,9 @@ public static class ConfigureDependencyService
         services.AddScoped<ICurrentUserService, CurrentUserService>();
         services.AddScoped<IDateTimeService, DateTimeService>();
         services.AddScoped<IJsonSerializerService, JsonSerializerService>();
+        services.AddScoped<INotificationService, SendInBlueService>();
+        services.AddScoped<ICacheService, LazyCacheService>();
+        services.AddScoped<ICaptchaService, GoogleCaptchaService>();
         services.AddScoped<IDomainEventService, DomainEventService>();
     }
 }

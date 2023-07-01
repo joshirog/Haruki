@@ -17,10 +17,10 @@ public static class ConfigureSwaggerService
             var securityScheme = new OpenApiSecurityScheme
             {
                 Name = "JWT Authentication",
-                Description = "Enter JWT Bearer token **_only_**",
+                Description = "JWT Authorization header using the Bearer scheme",
                 In = ParameterLocation.Header,
                 Type = SecuritySchemeType.Http,
-                Scheme = "bearer",
+                Scheme = "Bearer",
                 BearerFormat = "JWT",
                 Reference = new OpenApiReference
                 {
