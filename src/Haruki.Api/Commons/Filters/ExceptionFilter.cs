@@ -28,6 +28,8 @@ public class ExceptionFilter : ExceptionFilterAttribute
             { nameof(ErrorInvalidException), HandleErrorInvalidException },
             { nameof(UnauthorizedAccessException), HandleUnauthorizedAccessException },
             { nameof(AutoMapperMappingException), HandleAutoMapperMappingException },
+            { nameof(NotSupportedException), HandleNotSupportedException },
+            
         };
     }
 
@@ -101,6 +103,13 @@ public class ExceptionFilter : ExceptionFilterAttribute
     }
 
     private void HandleUnknownException(ExceptionContext context)
+    {
+        CustomMessage = $"{context.Exception.Message} {context.Exception.InnerException}";
+
+        context.ExceptionHandled = true;
+    }
+    
+    private void HandleNotSupportedException(ExceptionContext context)
     {
         CustomMessage = $"{context.Exception.Message} {context.Exception.InnerException}";
 

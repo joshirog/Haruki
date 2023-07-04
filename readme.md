@@ -30,3 +30,4 @@ dotnet ef migrations remove -s Haruki.Api
 ## References
 
 * https://medium.com/@ajidejibola/authentication-and-authorization-in-net-6-with-jwt-and-asp-net-identity-2566e75851fe
+*  https://www.youtube.com/watch?v=WYMlEAmQSN4

@@ -3,17 +3,17 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace Haruki.Api.Features.v1.Account.Confirm;
+namespace Haruki.Api.Features.v1.Account.Otp;
 
-public class ConfirmController : ApiControllerBase
+public class OtpController : ApiControllerBase
 {
     [HttpGet]
     [AllowAnonymous]
     [ApiVersion("1.0")]
     [ApiExplorerSettings(GroupName = "Accounts")]
     [Produces("application/json")]
-    [SwaggerOperation(Summary = "Confirm activate account", Description = "Confirm activate account")]
-    public async Task<IActionResult> Confirm([FromBody] ConfirmCommand command)
+    [SwaggerOperation(Summary = "Otp 2 factor authentication", Description = "Otp 2 factor authentication")]
+    public async Task<IActionResult> Otp([FromBody] OtpCommand command)
     {
         return Ok(await Mediator.Send(command));
     }

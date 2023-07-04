@@ -15,4 +15,8 @@ public static class GeneralConstant
     public const string AccessDeniedPathInfo = "/AccessDeniedPathInfo";
 
     public const bool RetrieveUserDetails = true;
+    
+    public const string ProviderEmail = "Email";
+    
+    public const string ProviderSms = "Sms";
 }

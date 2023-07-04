@@ -13,6 +13,10 @@ public static class SettingConstant
     
     public static string WebRouteOtp { get; set; }
     
+    public static string WebRouteExternal { get; set; }
+    
+    public static string WebRouteReset { get; set; }
+
     public static string DefaultConnectionString { get; set; }
     
     public static string HangfireConnectionString { get; set; }
@@ -83,12 +87,12 @@ public static class SettingConstant
             JwtIssuer = configuration.GetSection("Jwt:Issuer").Value;
             JwtAudience = configuration.GetSection("Jwt:Audience").Value;
             JwtSecret = configuration.GetSection("Jwt:Secret").Value;
-            JwtExpireIn = Convert.ToInt32(configuration.GetSection("Jwt:ExpireIn").Value);
-            WebUrl = configuration.GetSection("AppSettings:Web:Url").Value;
-            WebUrl = configuration.GetSection("AppSettings:Web:Url").Value;
+            JwtExpireIn = Convert.ToInt32(configuration.GetSection("Jwt:ExpiresIn").Value);
             WebUrl = configuration.GetSection("AppSettings:Web:Url").Value;
             WebRouteConfirm = configuration.GetSection("AppSettings:Web:Routes:AccountConfirm").Value;
             WebRouteOtp = configuration.GetSection("AppSettings:Web:Routes:AccountOtp").Value;
+            WebRouteExternal = configuration.GetSection("AppSettings:Web:Routes:AccountExternal").Value;
+            WebRouteReset = configuration.GetSection("AppSettings:Web:Routes:AccountReset").Value;
             DefaultConnectionString = configuration.GetConnectionString("DefaultConnection");
             HangfireConnectionString = configuration.GetConnectionString("HangfireConnection");
             HangfireUserName = configuration.GetSection("Hangfire:Credentials:UserName").Value;
@@ -121,6 +125,8 @@ public static class SettingConstant
             WebUrl = Environment.GetEnvironmentVariable("APP_SETTINGS_WEB_URL");
             WebRouteConfirm = Environment.GetEnvironmentVariable("APP_SETTINGS_WEB_ROUTE_CONFIRM");
             WebRouteOtp = Environment.GetEnvironmentVariable("APP_SETTINGS_WEB_ROUTE_OTP");
+            WebRouteExternal = Environment.GetEnvironmentVariable("APP_SETTINGS_WEB_ROUTE_EXTERNAL");
+            WebRouteReset = Environment.GetEnvironmentVariable("APP_SETTINGS_WEB_ROUTE_RESET");
             DefaultConnectionString = Environment.GetEnvironmentVariable("DEFAULT_CONNECTION");
             HangfireConnectionString = Environment.GetEnvironmentVariable("HANGFIRE_CONNECTION");
             HangfireUserName = Environment.GetEnvironmentVariable("HANGFIRE_USERNAME");
@@ -152,6 +158,8 @@ public static class SettingConstant
         Console.WriteLine($"WebUrl : {WebUrl}");
         Console.WriteLine($"WebRouteConfirm : {WebRouteConfirm}");
         Console.WriteLine($"WebRouteOtp : {WebRouteOtp}");
+        Console.WriteLine($"WebRouteExternal : {WebRouteExternal}");
+        Console.WriteLine($"WebRouteExternal : {WebRouteReset}");
         Console.WriteLine($"DefaultConnectionString : {DefaultConnectionString}");
         Console.WriteLine($"HangfireConnectionString : {HangfireConnectionString}");
         Console.WriteLine($"HangfireUserName : {HangfireUserName}");

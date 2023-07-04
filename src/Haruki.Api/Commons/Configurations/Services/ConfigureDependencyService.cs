@@ -12,7 +12,7 @@ public static class ConfigureDependencyService
 {
     public static void AddDependencyService(this IServiceCollection services)
     {
-        ValidatorOptions.Global.LanguageManager.Culture = new CultureInfo("es");
+        ValidatorOptions.Global.LanguageManager.Culture = new CultureInfo("en");
 
         services.AddMediatR(Assembly.GetExecutingAssembly());
         services.AddAutoMapper(Assembly.GetExecutingAssembly());

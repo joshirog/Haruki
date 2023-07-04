@@ -11,8 +11,8 @@ public static class ConfigureControllerService
         services.AddControllers(options =>
         {
             options.Filters.Add<ExceptionFilter>();
-        });
-        
+        }).AddNewtonsoftJson();
+
         services.Configure<ApiBehaviorOptions>(options =>
         {
             options.SuppressModelStateInvalidFilter = true;

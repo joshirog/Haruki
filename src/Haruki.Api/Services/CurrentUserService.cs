@@ -11,10 +11,14 @@ public class CurrentUserService : ICurrentUserService
     {
         _httpContextAccessor = httpContextAccessor;
     }
-    
-    public string UserId => _httpContextAccessor.HttpContext?.User.FindFirstValue("id") ?? "0";
-    
-    public string UserName => _httpContextAccessor.HttpContext?.User.FindFirstValue("username") ?? "system@haruki.com";
 
-    //public List<string> Roles => _securityService.GetRoles(UserId, _configurationService.GetSecurityServiceApplicationId().ToString()).Result;
+    public bool IsAuthenticated => _httpContextAccessor.HttpContext?.User.Identity?.IsAuthenticated ?? false;
+    
+    public string UserId => _httpContextAccessor.HttpContext?.User.Claims.FirstOrDefault(x => x.Type.Equals(ClaimTypes.Sid))?.Value ?? string.Empty;
+    
+    public string UserName => _httpContextAccessor.HttpContext?.User.Identity?.Name ?? "system@haruki.com";
+
+    public string Role => _httpContextAccessor.HttpContext?.User.Claims.FirstOrDefault(x => x.Type.Equals(ClaimTypes.Role))?.Value ?? string.Empty;
+
+    public string Token => _httpContextAccessor.HttpContext?.Request.Headers["Authorization"];
 }

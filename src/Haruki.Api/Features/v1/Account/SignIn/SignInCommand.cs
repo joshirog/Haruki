@@ -1,4 +1,5 @@
 using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Text;
 using Haruki.Api.Commons.Bases;
 using Haruki.Api.Commons.Constants;
@@ -39,21 +40,23 @@ public class SignInHandler : IRequestHandler<SignInCommand, ResponseBase<SignInR
     private readonly ICaptchaService _captchaService;
     private readonly UserManager<User> _userManager;
     private readonly SignInManager<User> _signInManager;
+    private readonly IDateTimeService _dateTimeService;
 
-    public SignInHandler(IMediator mediator, ICaptchaService captchaService, UserManager<User> userManager, SignInManager<User> signInManager)
+    public SignInHandler(IMediator mediator, ICaptchaService captchaService, UserManager<User> userManager, SignInManager<User> signInManager, IDateTimeService dateTimeService)
     {
         _mediator = mediator;
         _captchaService = captchaService;
         _userManager = userManager;
         _signInManager = signInManager;
+        _dateTimeService = dateTimeService;
     }
     
     public async Task<ResponseBase<SignInResponse>> Handle(SignInCommand request, CancellationToken cancellationToken)
     {
-        var isValid = await _captchaService.SiteVerify(request.Captcha);
+        //var isValid = await _captchaService.SiteVerify(request.Captcha);
 
-        if (!isValid)
-            return Response.Fail(ResponseConstant.MessageFail, new SignInResponse());
+        //if (!isValid)
+            //return Response.Fail(ResponseConstant.MessageFail, new SignInResponse());
 
         var user = await _userManager.FindByNameAsync(request.UserName);
 
@@ -87,17 +90,24 @@ public class SignInHandler : IRequestHandler<SignInCommand, ResponseBase<SignInR
         if(!roles.Any())
             Response.Fail(ResponseConstant.MessageFail, new SignInResponse());
         
-        claims.Add(new("role", roles.ToList().FirstOrDefault()!));
+        claims = new List<Claim>
+        {
+            new(ClaimTypes.Sid, user.Id.ToString()),
+            new (ClaimTypes.Name, user.UserName),
+            new (ClaimTypes.GivenName, $"Jose Oshiro")
+        };
+        
+        claims.Add(new(ClaimTypes.Role, roles.ToList().FirstOrDefault()!));
 
         var securityToken = new JwtSecurityToken
         (
             issuer: SettingConstant.JwtIssuer,
             audience: SettingConstant.JwtAudience,
             claims: claims,
-            expires: DateTime.Now.AddMinutes(SettingConstant.JwtExpireIn),
+            expires: _dateTimeService.Now.AddHours(SettingConstant.JwtExpireIn),
             signingCredentials: new SigningCredentials(
                 new SymmetricSecurityKey(Encoding.UTF8.GetBytes(SettingConstant.JwtSecret)),
-                SecurityAlgorithms.HmacSha256)
+                SecurityAlgorithms.HmacSha256Signature)
         );
 
         return result.Succeeded
