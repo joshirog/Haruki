@@ -14,6 +14,10 @@ public class DefaultContext : IdentityDbContext<User, Role, Guid, UserClaim, Use
     private readonly IDateTimeService _dateTimeService;
     private readonly IDomainEventService _domainEventService;
     private readonly ILoggerFactory _loggerFactory;
+    
+    public DbSet<Service> Services { get; set; }
+    
+    public DbSet<Category> Categories { get; set; }
 
     public DefaultContext(DbContextOptions options, ICurrentUserService currentUserService, IDateTimeService dateTimeService, IDomainEventService domainEventService, ILoggerFactory loggerFactory) : base(options)
     {

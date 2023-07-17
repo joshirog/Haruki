@@ -7,6 +7,8 @@
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     </PropertyGroup>
 
+    <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
+    <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
     <ItemGroup>
         <PackageReference Include="Hangfire.PostgreSql" Version="1.19.12" />
         <PackageReference Include="LazyCache" Version="2.4.0" />
@@ -48,6 +50,10 @@
 
     <ItemGroup>
       <Folder Include="Domains\Core\" />
+      <Folder Include="Features\v1\Account\Me\" />
+      <Folder Include="Features\v1\Account\Profile\" />
+      <Folder Include="Features\v1\Authentication\Refresh\" />
+      <Folder Include="Features\v1\Authentication\Revoke\" />
       <Folder Include="Logs\" />
       <Folder Include="Persistences\Migrations\" />
     </ItemGroup>

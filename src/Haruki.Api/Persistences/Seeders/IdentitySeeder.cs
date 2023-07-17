@@ -87,11 +87,17 @@ public static class IdentitySeeder
         
         await userManager.AddClaimsAsync(user, new List<Claim>
         {
-            new("identifier", user.Id.ToString()),
-            new("first_name", "Jose Luis"),
-            new("last_name", "Oshiro Gushiken"),
-            new("nick_name", "JO"),
-            new("avatar", GeneralConstant.DefaultAvatar, ClaimValueTypes.String)
+            new(ClaimTypes.Sid, user.Id.ToString()),
+            new(ClaimTypes.Email, user.Email),
+            new(ClaimTypes.Name, "Jose Luis"),
+            new(ClaimTypes.Surname, "Oshiro Gushiken"),
+            new(ClaimTypes.GivenName, "JO"),
+            new(ClaimTypes.DateOfBirth, "1986-08-31"),
+            new(ClaimTypes.Gender, "male"),
+            new(ClaimTypes.MobilePhone, "946678198"),
+            new(ClaimTypes.Country, "PE"),
+            new(ClaimTypes.Role, Enum.GetName(typeof(RoleEnum), RoleEnum.Administrator)!),
+            new(ClaimTypes.UserData, GeneralConstant.DefaultAvatar, ClaimValueTypes.String)
         });
     }
 }

@@ -8,7 +8,7 @@ public class UserRoleConfiguration : IEntityTypeConfiguration<UserRole>
 {
     public void Configure(EntityTypeBuilder<UserRole> builder)
     {
-        builder.ToTable("user_roles");
+        builder.ToTable("h0_user_roles");
 
         builder.Property(x => x.UserId)
             .HasColumnName("user_id")

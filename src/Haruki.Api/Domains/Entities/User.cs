@@ -7,6 +7,10 @@ public class User : IdentityUser<Guid>, AuditableEntityBase
 {
     public string Status { get; set; }
     
+    public string RefreshToken { get; set; }
+    
+    public DateTime? TokenExpires { get; set; }
+    
     public string CreatedBy { get; set; }
     
     public DateTime CreatedAt { get; set; }

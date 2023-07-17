@@ -8,7 +8,7 @@ public class UserLoginConfiguration : IEntityTypeConfiguration<UserLogin>
 {
     public void Configure(EntityTypeBuilder<UserLogin> builder)
     {
-        builder.ToTable("user_logins");
+        builder.ToTable("h0_user_logins");
         
         builder.Property(x => x.UserId)
             .HasColumnName("user_id")

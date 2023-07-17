@@ -8,7 +8,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
 {
     public void Configure(EntityTypeBuilder<User> builder)
     {
-        builder.ToTable("users");
+        builder.ToTable("h0_users");
 
         builder.HasKey(x => x.Id);
 
@@ -92,26 +92,36 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             .HasColumnName("access_failed_count")
             .HasColumnOrder(15)
             .IsRequired();
+        
+        builder.Property(x => x.RefreshToken)
+            .HasColumnName("refresh_token")
+            .HasColumnOrder(16)
+            .IsRequired(false);
+        
+        builder.Property(x => x.TokenExpires)
+            .HasColumnName("token_expires")
+            .HasColumnOrder(17)
+            .IsRequired(false);
 
         builder.Property(x => x.CreatedAt)
             .HasColumnName("created_at")
-            .HasColumnOrder(16)
+            .HasColumnOrder(18)
             .IsRequired();
 
         builder.Property(x => x.CreatedBy)
             .HasColumnName("created_by")
-            .HasColumnOrder(17)
+            .HasColumnOrder(19)
             .HasMaxLength(120)
             .IsRequired();
 
         builder.Property(x => x.UpdatedAt)
            .HasColumnName("updated_at")
-           .HasColumnOrder(18)
+           .HasColumnOrder(20)
            .IsRequired(false);
 
         builder.Property(x => x.UpdatedBy)
             .HasColumnName("updated_by")
-            .HasColumnOrder(19)
+            .HasColumnOrder(21)
             .HasMaxLength(120)
             .IsRequired(false);
     }

@@ -9,6 +9,14 @@ public interface ICurrentUserService
     string UserName { get; }
 
     string Role { get; }
+    
+    string Name { get; }
+    
+    string SurName { get; }
+    
+    string GivenName { get; }
+    
+    string Avatar { get; }
 
     string Token { get; }
 }

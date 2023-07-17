@@ -39,6 +39,8 @@ public class ExceptionFilter : ExceptionFilterAttribute
 
         if (CustomValidationMessage is null)
             context.Result = new JsonResult(Response.Error<object>(CustomMessage, CustomValidationMessage));
+        else if (!string.IsNullOrEmpty(CustomMessage))
+            context.Result = new JsonResult(Response.Error<object>(CustomMessage, CustomValidationMessage));
         else
         {
             context.Result = CustomValidationMessage.Any()

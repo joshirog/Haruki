@@ -8,7 +8,7 @@ public class RoleClaimConfiguration : IEntityTypeConfiguration<RoleClaim>
 {
     public void Configure(EntityTypeBuilder<RoleClaim> builder)
     {
-        builder.ToTable("role_claims");
+        builder.ToTable("h0_role_claims");
 
         builder.HasKey(x => x.Id);
 

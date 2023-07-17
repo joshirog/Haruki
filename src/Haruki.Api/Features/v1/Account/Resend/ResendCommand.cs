@@ -1,7 +1,7 @@
 using Haruki.Api.Commons.Bases;
 using Haruki.Api.Commons.Constants;
 using Haruki.Api.Domains.Entities;
-using Haruki.Api.Features.v1.Account.SignUp;
+using Haruki.Api.Features.v1.Authentication.SignUp;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 

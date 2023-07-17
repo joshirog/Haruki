@@ -8,7 +8,7 @@ public class UserClaimConfiguration : IEntityTypeConfiguration<UserClaim>
 {
     public void Configure(EntityTypeBuilder<UserClaim> builder)
     {
-        builder.ToTable("user_claims");
+        builder.ToTable("h0_user_claims");
 
         builder.HasKey(x => x.Id);
 
